@@ -1,43 +1,35 @@
-import React, { useMemo } from "react";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-function UserList({ users, searchTerm }) {
-  const filteredUsers = useMemo(() => {
-    return users.filter(user => user.name.includes(searchTerm));
-  }, [users, searchTerm]); // Only recalculate if users or searchTerm changes
-
-  return (
-    <ul>
-      {filteredUsers.map(user => <li key={user.id}>{user.name}</li>)}
-    </ul>
-  );
-}
-
-export default function App() {
-  const users = [
-    { id: 1, name: "Alice" },
-    { id: 2, name: "Bob" },
-    { id: 3, name: "Charlie" },
-    { id: 4, name: "David" },
-  ];
-  const [searchTerm, setSearchTerm] = React.useState("");
+function App() {
+  const [count, setCount] = useState(0)
 
   return (
-    <div style={{
-      minHeight: "100vh",
-      display: "flex",
-      flexDirection: "column",
-      justifyContent: "center",
-      alignItems: "center"
-    }}>
-      <h2>useMemo Example: Filter User List</h2>
-      <input
-        type="text"
-        placeholder="Search users..."
-        value={searchTerm}
-        onChange={e => setSearchTerm(e.target.value)}
-        style={{ marginBottom: 16, padding: 8, fontSize: 16 }}
-      />
-      <UserList users={users} searchTerm={searchTerm} />
-    </div>
-  );
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.jsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
 }
+
+export default App
